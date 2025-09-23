@@ -1,90 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Basic meta tags -->
+<!-- Basic meta tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Base Seo -->
+
+<!-- Base Seo -->
     <title>Schizzo ($SCHIZZ) - Meme Token on Ethereum</title>
     <meta name="description" content="Schizzo ($SCHIZZ) is a meme token on the Ethereum blockchain, managed by the community. Check the contract, DEXTools, GeckoTerminal and join the community!">
     <meta name="keywords" content="SCHIZZ, Schizzo, meme token, Ethereum, crypto, DEX, DeFi"> 
     <meta name="author" content="Schizzo Dev Team">
 
-    <!-- Open Graph / Social preview -->
+<!-- Open Graph / Social preview -->
     <meta property="og:title" content="Schizzo ($SCHIZZ) - Meme Token on Ethereum">
     <meta property="og:description" content="Schizzo ($SCHIZZ) is a meme token on the Ethereum blockchain, managed by the community. Check the contract, DEXTools, GeckoTerminal and join the community!">
     <meta property="og:type" content="website">
     <meta property="og:image" content="images/schizzo256.png">
     <meta property="og:url" content="https://tuodominio.com">
-
-    <!-- Twitter Card -->
+<!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Schizzo ($SCHIZZ) - Meme Token on Ethereum">
     <meta name="twitter:description" content="Schizzo ($SCHIZZ) is a meme token on the Ethereum blockchain, managed by the community. Check the contract, DEXTools, GeckoTerminal and join the community!">
     <meta name="twitter:image" content="images/schizzo256.png">
 
-    <!-- Theme color for Chrome/Android -->
+<!-- Theme color for Chrome/Android -->
     <meta name="theme-color" content="#53FDC3">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+<!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <!-- Favicon -->
+<!-- Favicon -->
     <link rel="icon" type="image/png" href="images/schizzo32.png">
-    <style>
-        body {
-            margin: 0; /* rimuove margini di default */
-            font-family: 'Arial', sans-serif;
-            /* Gradiente: dal viola al rosso arancio */
-            background: linear-gradient(135deg, #53FDC3, #FF4500);
-            color: #fff; /* testo bianco leggibile sul gradiente */
-            min-height: 100vh; /* assicura che il gradiente copra tutta l'altezza */
-        }
-        
-        header>h1{
-            font-family: font-family: "Segoe UI", Arial, sans-serif;
-            font-size: clamp(25px, 10vw, 80px);
-            margin: 0;         /* rimuove margini extra */
-        }
-        header>p{
-            font-family: font-family: "Segoe UI", Arial, sans-serif;
-            font-size: clamp(20px, 5vw, 40px);
-            margin: 0;         /* rimuove margini extra */
-        }
-    </style>
+
+<style>
+body,p,h2{ font-family: 'Roboto Mono', monospace; line-height: 1.6; }
+h1 { font-family: 'Orbitron', sans-serif; }
+body, html {height: 100%}
+p {line-height: 2}
+.bgimg, .bgimg2 {
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+.bgimg {background-image: url("images/wedding_couple.png")}
+.bgimg2 {}
+.fa-copy::before {
+  content: "\f0c5"; /* icona copy */
+  
+}
+
+.fa-check::before {
+  content: "\f00c"; /* icona check */
+  
+}
+</style>
 </head>
 <body>
-    <header>
-            <h1>SCHIZZO</h1>
-            <p>you expect nothing… and maybe that’s exactly what surprises you</p>
-    </header>
 
-    <main>
-        <section id="about">
-            <h2>Informazioni sul Token</h2>
-            <ul>
-                <li>Contratto: <code>0x5d71c40BB35B93350ECfDCd6F937052B7ADDD55F</code></li>
-                <li>Totale supply: 100.000.000 SCHIZZ</li>
-                <li>Holders: 835</li>
-                <li>Liquidità: 257$</li>
-            </ul>
-        </section>
+<!-- Header / Home-->
+<header style="position: relative;" class="bgimg" id="home">
+  <div style="position: absolute; padding: 10px;" class=" sc-text-white ">
+    <h1 style=" font-size: clamp(25px, 10vw, 80px);" class="">SCHIZZO</h1>
+    <div style="margin: 0;padding: 0; width: 50vw; max-width: 400px;">
+    <h2 style=" font-size: clamp(15px, 3vw, 30px);">You expect nothing… and maybe that’s exactly what surprises you</h2>
+    </div>
+  </div>
+</header>
 
-        <section id="links">
-            <h2>Link Utili</h2>
-            <ul>
-                <li><a href="https://www.dextools.io/app/en/ether/pair-explorer/0x...">DEXTools</a></li>
-                <li><a href="https://www.geckoterminal.com/eth/pools/0x5d71c40BB35B93350ECfDCd6F937052B7ADDD55F">GeckoTerminal</a></li>
-                <li><a href="https://t.me/schizzotoken">Telegram</a></li>
-                <li><a href="https://twitter.com/schizzotoken">Twitter/X</a></li>
-            </ul>
-        </section>
-    </main>
+<!-- Navbar (sticky bottom) -->
+<div class="sc-bottom sc-hide-small">
+  <div class="sc-bar sc-white sc-center sc-padding sc-opacity-min sc-hover-opacity-off">
+    <a href="#home" style="width:25%" class="sc-bar-item sc-button">Home</a>
+    <a href="#schizzo" style="width:25%" class="sc-bar-item sc-button">Schizzo</a>
+    <a href="#tokenInfo" style="width:25%" class="sc-bar-item sc-button">Info</a>
+    <a href="#links" style="width:25%" class="sc-bar-item sc-button">links</a>
+  </div>
+</div>
 
-    <footer>
-        <p>&copy; 2025 Schizzo Dev Team | <a href="LICENSE">MIT License</a></p>
-    </footer>
+<!-- About / Schizzo -->
+<div style="background-color:#69edfe;" class="sc-container sc-padding-64" id="schizzo">
+  <div class="sc-content">
+    <h1 class="sc-center"><b>Schizzo</b></h1>
+    <!-- <img class="sc-round " src="images/???.jpg" style="width:100%;margin:32px 0">  -->
+    <p>
+      <i>
+        Schizzo ($SCHIZZ) is a community-driven meme token built on the Ethereum blockchain.  
+        No presales. The majority of the supply has been distributed through airdrops to the community,  
+        ensuring wide decentralization and fair access from the start.  
+        Only a very small portion of the supply is reserved for the team to support development, marketing, and ecosystem growth.  
+        Built for fun, powered by the community, and open to anyone who wants to join the movement.
+      </i>
+    </p>
+  </div>
+</div>
+
+<!-- Background photo -->
+<!--
+<div class="sc-display-container bgimg2">
+  <div class="sc-display-middle sc-text-white sc-center">
+    <h1 class="sc-jumbo">Lorem ipsum dolor sit amet</h1><br>
+    <h2>consectetur adipiscing elit</h2>
+  </div>
+</div>
+-->
+
+<!-- Token information -->
+<div style="background-color:#69edfe;" class="sc-container sc-padding-64 sc-center" id="tokenInfo">
+  <div class="sc-content">
+    <h1 class=""><b>Token information</b></h1>
+    <!-- <img class="sc-round-large " src="images/???2.jpg" style="width:100%;margin:64px 0">-->
+    <div class="sc-row">
+      <div style=" word-wrap: break-word; 
+            overflow-wrap: break-word;" class="sc-half">
+        <h2>CA</h2>
+        <p id="contractAddress" style="margin:0;">0x5d71c40BB35B93350ECfDCd6F937052B7ADDD55F</p>
+        <a href="javascript:;" class="copy-btn">
+          <i class="fas fa-copy"></i>
+        </a>
+      </div>
+      <div class="sc-half">
+        <h2>Supply</h2>
+        <p>100.000.000 SCHIZZ</p>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- links section -->
+<div style="background-color:#69e0ff;" class="sc-container sc-padding-64 sc-center sc-wide" id="links">
+  <h1>Social</h1>
+  
+    <a href="https://www.dextools.io/app/en/ether/pair-explorer/0x...">DEXTools</a></li>
+    <a href="https://www.geckoterminal.com/eth/pools/0x5d71c40BB35B93350ECfDCd6F937052B7ADDD55F">GeckoTerminal</a></li>
+    <a href="https://t.me/schizzotoken">Telegram</a></li>
+    <a href="https://twitter.com/schizzotoken">Twitter/X</a></li>
+  
+</div>
+
+
+<!-- Footer -->
+<footer class="sc-center sc-black sc-padding-16">
+    <p>&copy; 2025 Schizzo Dev Team | <a href="LICENSE" class="w3-hover-text-gray">MIT License</a></p>
+</footer>
+<div class="sc-hide-small" style="margin-bottom:32px">-</div>
+<script>
+const copyBtn = document.querySelector('.copy-btn');
+const contractText = document.getElementById('contractAddress');
+
+copyBtn.addEventListener('click', () => {
+  // Copia il testo negli appunti
+  navigator.clipboard.writeText(contractText.innerText).then(() => {
+    const icon = copyBtn.querySelector('i');
+    
+    // Cambia icona da copy a check
+    icon.classList.remove('fa-copy');
+    icon.classList.add('fa-check');
+
+    // Torna copy dopo 1 secondo
+    setTimeout(() => {
+      icon.classList.remove('fa-check');
+      icon.classList.add('fa-copy');
+    }, 1000);
+  });
+});
+</script>
 </body>
 </html>
