@@ -45,7 +45,66 @@
 
   <a href="index.html">← Torna alla home</a>
 
-  <script src="js/airdrop.js"></script>
+  <script>
+let provider;
+let signer;
+let contract;
+
+const CONTRACT_ADDRESS = "0x5d71c40bb35b93350ecfdcd6f937052b7addd55f";
+
+// ABI MINIMA (solo la funzione airdrop)
+const ABI = [
+  "function claimAirdrop()"
+];
+
+const connectBtn = document.getElementById("connectBtn");
+const claimBtn = document.getElementById("claimBtn");
+const statusText = document.getElementById("status");
+
+connectBtn.onclick = async () => {
+  if (!window.ethereum) {
+    statusText.innerText = "❌ MetaMask non trovato";
+    return;
+  }
+
+  try {
+    provider = new ethers.BrowserProvider(window.ethereum);
+    signer = await provider.getSigner();
+
+    const address = await signer.getAddress();
+    statusText.innerText = "✅ Connesso: " + address;
+
+    contract = new ethers.Contract(
+      CONTRACT_ADDRESS,
+      ABI,
+      signer
+    );
+
+    claimBtn.disabled = false;
+  } catch (err) {
+    statusText.innerText = "❌ Connessione rifiutata";
+  }
+};
+
+claimBtn.onclick = async () => {
+  try {
+    statusText.innerText = "⏳ Transazione in corso...";
+
+    const tx = await contract.claimAirdrop();
+    await tx.wait();
+
+    statusText.innerText = "🎉 Airdrop ricevuto!";
+  } catch (err) {
+    console.error(err);
+
+    if (err.reason) {
+      statusText.innerText = "❌ " + err.reason;
+    } else {
+      statusText.innerText = "❌ Transazione fallita";
+    }
+  }
+};
+</script>
 </body>
 </html>
 
