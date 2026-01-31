@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Schizzo Airdrop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background-color: #69edfe;
+      text-align: center;
+      padding: 40px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 15px 30px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="font-family: Orbitron;">🎁 SCHIZZ AIRDROP</h1>
+
+  <p>Collega il wallet e richiedi il tuo airdrop</p>
+
+  <button id="connectBtn">Connetti Wallet</button>
+  <br>
+  <button id="claimBtn" disabled>Ricevi Airdrop</button>
+
+  <p id="status"></p>
+
+  <a href="index.html">← Torna alla home</a>
+
+  <script src="js/airdrop.js"></script>
+</body>
+</html>
 
