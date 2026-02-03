@@ -92,22 +92,50 @@ connectBtn.onclick = async () => {
 
 claimBtn.onclick = async () => {
   try {
+    statusText.innerText = "⏳ Verifica captcha...";
+
+    // ottieni token hCaptcha
+    const captchaToken = hcaptcha.getResponse();
+
+    if (!captchaToken) {
+      statusText.innerText = "❌ Risolvi prima il captcha";
+      return;
+    }
+
+    // invia address + captchaToken al Worker
+    const address = await signer.getAddress();
+
+    const res = await fetch("https://sign-worker.<account>.workers.dev", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ address, captchaToken })
+    });
+
+    const data = await res.json();
+
+    if (!data.signature) {
+      statusText.innerText = "❌ Captcha non valido";
+      return;
+    }
+
+    const signature = data.signature;
+
     statusText.innerText = "⏳ Transazione in corso...";
 
-    const tx = await contract.claimAirdrop();
+    // invia la signature al contratto
+    const tx = await contract.claim(signature);
     await tx.wait();
 
     statusText.innerText = "🎉 Airdrop ricevuto!";
+
+    // reset captcha
+    hcaptcha.reset();
   } catch (err) {
     console.error(err);
-
-    if (err.reason) {
-      statusText.innerText = "❌ " + err.reason;
-    } else {
-      statusText.innerText = "❌ Transazione fallita";
-    }
+    statusText.innerText = "❌ Errore: " + (err.reason || err.message);
   }
 };
+;
 </script>
 </body>
 </html>
