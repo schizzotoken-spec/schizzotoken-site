@@ -107,7 +107,7 @@ claimBtn.onclick = async () => {
     // Send address + captchaToken to the Worker
     const address = await signer.getAddress();
 
-    const res = await fetch("https://sign-worker.<account>.workers.dev", {
+    const res = await fetch("https://sign-worker.schizzotoken.workers.dev", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ address, captchaToken })
