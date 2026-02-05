@@ -11,7 +11,6 @@
   <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
   <script src="https://hcaptcha.com/1/api.js" async defer></script>
 
-
   <style>
     body {
       font-family: 'Roboto Mono', monospace;
@@ -35,32 +34,32 @@
 </head>
 <body>
 
-  <h1 style="font-family: Orbitron;">🎁 SCHIZZ AIRDROP</h1>
+  <h1 style="font-family: Orbitron;">SCHIZZ AIRDROP</h1>
 
-  <p>Collega il wallet e richiedi il tuo airdrop</p>
+  <p>Connect your wallet and claim your airdrop</p>
 
-  <button id="connectBtn">Connetti Wallet</button>
+  <button id="connectBtn">Connect Wallet</button>
   <br>
   <div class="h-captcha" 
-     data-sitekey="d1a23c4a-a34e-4d4e-93d6-93b4e0d6b24a">
+       data-sitekey="d1a23c4a-a34e-4d4e-93d6-93b4e0d6b24a">
   </div>
   <br>
-  <button id="claimBtn" disabled>Ricevi Airdrop</button>
+  <button id="claimBtn" disabled>Claim Airdrop</button>
 
   <p id="status">"status"</p>
 
-  <a href="index.html">← Torna alla home</a>
+  <a href="index.html">← Back to home</a>
 
   <script>
 let provider;
 let signer;
 let contract;
 
-const CONTRACT_ADDRESS = "0x5d71c40bb35b93350ecfdcd6f937052b7addd55f";
+const CONTRACT_ADDRESS = "0x13B88e1148B32C61ECC95ABB3406f6eb4A43E8ad";
 
-// ABI MINIMA (solo la funzione airdrop)
+// Minimal ABI (only claim function)
 const ABI = [
-  "function claimAirdrop()"
+  "function claim(bytes calldata signature)"
 ];
 
 const connectBtn = document.getElementById("connectBtn");
@@ -69,16 +68,17 @@ const statusText = document.getElementById("status");
 
 connectBtn.onclick = async () => {
   if (!window.ethereum) {
-    statusText.innerText = "❌ MetaMask non trovato";
+    statusText.innerText = "❌ MetaMask not found";
     return;
   }
 
   try {
-    provider = new ethers.BrowserProvider(window.ethereum);
+    // Connect to Sepolia (change to Mainnet or other network for production)
+    const provider = new ethers.BrowserProvider(window.ethereum, "sepolia");
     signer = await provider.getSigner();
 
     const address = await signer.getAddress();
-    statusText.innerText = "✅ Connesso: " + address;
+    statusText.innerText = "✅ Connected: " + address;
 
     contract = new ethers.Contract(
       CONTRACT_ADDRESS,
@@ -88,23 +88,23 @@ connectBtn.onclick = async () => {
 
     claimBtn.disabled = false;
   } catch (err) {
-    statusText.innerText = "❌ Connessione rifiutata";
+    statusText.innerText = "❌ Connection rejected";
   }
 };
 
 claimBtn.onclick = async () => {
   try {
-    statusText.innerText = "⏳ Verifica captcha...";
+    statusText.innerText = "⏳ Verifying captcha...";
 
-    // ottieni token hCaptcha
+    // Get hCaptcha token
     const captchaToken = hcaptcha.getResponse();
 
     if (!captchaToken) {
-      statusText.innerText = "❌ Risolvi prima il captcha";
+      statusText.innerText = "❌ Please solve the captcha first";
       return;
     }
 
-    // invia address + captchaToken al Worker
+    // Send address + captchaToken to the Worker
     const address = await signer.getAddress();
 
     const res = await fetch("https://sign-worker.<account>.workers.dev", {
@@ -116,29 +116,27 @@ claimBtn.onclick = async () => {
     const data = await res.json();
 
     if (!data.signature) {
-      statusText.innerText = "❌ Captcha non valido";
+      statusText.innerText = "❌ Invalid captcha";
       return;
     }
 
     const signature = data.signature;
 
-    statusText.innerText = "⏳ Transazione in corso...";
+    statusText.innerText = "⏳ Transaction in progress...";
 
-    // invia la signature al contratto
+    // Send signature to the contract
     const tx = await contract.claim(signature);
     await tx.wait();
 
-    statusText.innerText = "🎉 Airdrop ricevuto!";
+    statusText.innerText = "🎉 Airdrop claimed!";
 
-    // reset captcha
+    // Reset captcha
     hcaptcha.reset();
   } catch (err) {
     console.error(err);
-    statusText.innerText = "❌ Errore: " + (err.reason || err.message);
+    statusText.innerText = "❌ Error: " + (err.reason || err.message);
   }
 };
-;
-</script>
+  </script>
 </body>
 </html>
-
