@@ -116,9 +116,9 @@ claimBtn.onclick = async () => {
 
     const data = await res.json();
 
-    if (!data.signature) {
-      statusText.innerText = "❌ Invalid captcha";
-      return;
+    if (data.error) {
+    statusText.innerText = "❌ " + data.error;
+    return;
     }
 
     const signature = data.signature;
